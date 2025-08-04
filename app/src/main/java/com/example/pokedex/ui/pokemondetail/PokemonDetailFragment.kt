@@ -10,10 +10,6 @@ import androidx.fragment.app.viewModels
 import com.example.pokedex.databinding.FragmentPokemonDetailBinding
 
 class PokemonDetailFragment : Fragment() {
-    companion object {
-        fun newInstance() = PokemonDetailFragment()
-    }
-
     private lateinit var binding: FragmentPokemonDetailBinding
     private val viewModel: PokemonDetailViewModel by viewModels()
 

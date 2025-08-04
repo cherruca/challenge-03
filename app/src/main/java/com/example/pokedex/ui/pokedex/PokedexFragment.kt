@@ -10,10 +10,6 @@ import androidx.navigation.findNavController
 import com.example.pokedex.databinding.FragmentPokedexBinding
 
 class PokedexFragment : Fragment() {
-    companion object {
-        fun newInstance() = PokedexFragment()
-    }
-
     private lateinit var binding: FragmentPokedexBinding
     private val pokemonIndex: Int = 2
 

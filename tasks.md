@@ -18,7 +18,7 @@
 - [ ] API modeling and annotations (01:00)
 - [ ] Builders and converters (01:30)
 - [ ] Observe API data in the ViewModel (01:30)
-- [ ] Reusable API instancce class (01:00)
+- [ ] Reusable API instance class (01:00)
 - [ ] Load data from PokeAPI, 5 items at a time (01:30)
 
 ## Features

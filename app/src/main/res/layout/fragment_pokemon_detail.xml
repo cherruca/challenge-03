@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.pokemondetail.PokemonDetailFragment">
+    tools:context=".ui.pokemondetail.PokemonDetailFragment"
+    android:padding="16dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:text="@string/pokemon_details" />
 
 </FrameLayout>

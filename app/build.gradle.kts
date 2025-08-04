@@ -41,7 +41,7 @@ android {
     }
 }
 
-//tasks.getByPath("preBuild").dependsOn("ktlintFormat")
+tasks.getByPath("preBuild").dependsOn("ktlintFormat")
 
 dependencies {
 

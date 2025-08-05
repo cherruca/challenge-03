@@ -10,8 +10,8 @@ import com.example.pokedex.data.PokemonResponse
 import kotlinx.coroutines.launch
 
 class PokedexViewModel : ViewModel() {
-    private val _pokemons = MutableLiveData<PokemonResponse>()
-    val pokemons: LiveData<PokemonResponse>
+    private val _pokemons = MutableLiveData<PokemonResponse?>()
+    val pokemons: MutableLiveData<PokemonResponse?>
         get() = _pokemons
 
     init {

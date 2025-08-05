@@ -23,8 +23,8 @@ class PokedexAdapter : RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder>() 
         viewType: Int
     ): PokedexViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_pokedex, parent, false)
-        // databinding con inflate
-//        val view2 = ItemPokedexBinding.inflate(LayoutInflater.from(parent.context))
+        // todo: databinding con inflate
+        // val view2 = ItemPokedexBinding.inflate(LayoutInflater.from(parent.context))
         Log.d("VIEW", view.id.toString())
         return PokedexViewHolder(view)
     }

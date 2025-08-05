@@ -9,17 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.pokedex.data.Pokemon
 import com.example.pokedex.databinding.FragmentPokedexBinding
 
 class PokedexFragment : Fragment() {
     private lateinit var binding: FragmentPokedexBinding
     private val pokemonIndex: Int = 2
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var dataset: List<Pokemon>
-    private lateinit var customAdapter: PokedexAdapter
-    private lateinit var layoutManager: GridLayoutManager
+    private val customAdapter = PokedexAdapter()
 
     private val viewModel: PokedexViewModel by lazy {
         ViewModelProvider(this).get(PokedexViewModel::class.java)
@@ -44,41 +39,19 @@ class PokedexFragment : Fragment() {
         return binding.root
     }
 
-    private fun displayPokedexRecyclerView() {
-        layoutManager = GridLayoutManager(context, 2)
-        customAdapter = PokedexAdapter()
-
-        viewModel.pokemons.observe(viewLifecycleOwner) {
-            dataset = viewModel.pokemons.value!!.results!!
-            customAdapter =
-                PokedexAdapter().apply {
-                    submitList(dataset)
-                    // notifyDataSetChanged()
-                }
-            // customAdapter.submitList(dataset)
-            // customAdapter.notifyDataSetChanged()
-            Log.d("FRAGMENT", dataset.toString())
-        }
-    }
-
-    val adapter2 = PokedexAdapter()
-
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        // customAdapter = PokedexAdapter()
-        layoutManager = GridLayoutManager(context, 2)
+        val layoutManager = GridLayoutManager(context, 2)
         binding.recyclerviewPokedex.layoutManager = layoutManager
-        binding.recyclerviewPokedex.adapter = adapter2
+        binding.recyclerviewPokedex.adapter = customAdapter
 
         viewModel.pokemons.observe(viewLifecycleOwner) { response ->
             val dataset = response?.results ?: emptyList()
-            // dataset = viewModel.pokemons.value!!.results!!
-            adapter2.submitList(dataset)
-            adapter2.notifyDataSetChanged()
+            customAdapter.submitList(dataset)
             Log.d("FRAGMENT", dataset.toString())
         }
     }

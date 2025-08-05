@@ -61,25 +61,24 @@ class PokedexFragment : Fragment() {
         }
     }
 
+    val adapter2 = PokedexAdapter()
+
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = binding.recyclerviewPokedex
+
         // customAdapter = PokedexAdapter()
         layoutManager = GridLayoutManager(context, 2)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = PokedexAdapter()
+        binding.recyclerviewPokedex.layoutManager = layoutManager
+        binding.recyclerviewPokedex.adapter = adapter2
 
         viewModel.pokemons.observe(viewLifecycleOwner) { response ->
             val dataset = response?.results ?: emptyList()
             // dataset = viewModel.pokemons.value!!.results!!
-            recyclerView.adapter =
-                PokedexAdapter().apply {
-                    submitList(dataset)
-                    // notifyDataSetChanged()
-                }
+            adapter2.submitList(dataset)
+            adapter2.notifyDataSetChanged()
             Log.d("FRAGMENT", dataset.toString())
         }
     }

@@ -10,19 +10,22 @@ import com.example.pokedex.R
 import com.example.pokedex.data.Pokemon
 
 class PokedexAdapter : RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder>() {
-    private val dataSet = mutableListOf<Pokemon>()
+    private var dataSet = listOf<Pokemon>()
 
     class PokedexViewHolder(
         view: View
     ) : RecyclerView.ViewHolder(view) {
         val textViewName: TextView = view.findViewById(R.id.item_name)
-    }
+    } // holder e inflate con data binding
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): PokedexViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_pokedex, parent, false)
+        // databinding con inflate
+//        val view2 = ItemPokedexBinding.inflate(LayoutInflater.from(parent.context))
+        Log.d("VIEW", view.id.toString())
         return PokedexViewHolder(view)
     }
 
@@ -34,12 +37,14 @@ class PokedexAdapter : RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder>() 
         Log.d("BINDVIEWHOLDER", dataSet[position].name)
     }
 
-    override fun getItemCount(): Int = dataSet.size
+    override fun getItemCount(): Int {
+        Log.d("SIZE", dataSet.size.toString())
+        return dataSet.size
+    }
 
     fun submitList(newData: List<Pokemon>) {
-        dataSet.clear()
-        dataSet.addAll(newData)
-        // notifyDataSetChanged()
+        dataSet = newData
+        notifyDataSetChanged()
         Log.d("ADAPTER", dataSet.toString())
     }
 }

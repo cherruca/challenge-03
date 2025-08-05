@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.pokedex.databinding.FragmentPokedexBinding
 
@@ -13,7 +13,9 @@ class PokedexFragment : Fragment() {
     private lateinit var binding: FragmentPokedexBinding
     private val pokemonIndex: Int = 2
 
-    private val viewModel: PokedexViewModel by viewModels()
+    private val viewModel: PokedexViewModel by lazy {
+        ViewModelProvider(this).get(PokedexViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +26,13 @@ class PokedexFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPokedexBinding.inflate(inflater, container, false)
+        binding = FragmentPokedexBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
         binding.btnDetail.setOnClickListener { view: View ->
             view.findNavController().navigate(PokedexFragmentDirections.actionPokedexFragmentToPokemonDetailFragment(pokemonIndex))
         }
+
         return binding.root
     }
 }

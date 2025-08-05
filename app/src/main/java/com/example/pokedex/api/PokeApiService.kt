@@ -8,7 +8,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private const val BASE_URL = "https://pokeapi.co/api/v2/" // local properties
+// reference repo: https://github.com/udacity/andfun-kotlin-mars-real-estate/blob/master/app/src/main/java/com/example/android/marsrealestate/network/MarsApiService.kt
+
+private const val BASE_URL = "https://pokeapi.co/api/v2/" // todo: move to local properties
 
 private val moshi =
     Moshi
@@ -26,8 +28,8 @@ private val retrofit =
 interface PokeApiService {
     @GET("pokemon/")
     suspend fun getPokemons(
-        @Query("offset") offset: String,
-        @Query("limit") limit: String
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int
     ): PokemonResponse
 }
 

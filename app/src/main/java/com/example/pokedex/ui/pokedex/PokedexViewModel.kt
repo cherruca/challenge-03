@@ -1,7 +1,6 @@
 package com.example.pokedex.ui.pokedex
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,21 +12,29 @@ class PokedexViewModel : ViewModel() {
     private val _pokemons = MutableLiveData<PokemonResponse?>()
     val pokemons: MutableLiveData<PokemonResponse?>
         get() = _pokemons
+    var offset: Int = 0
+    val limit: Int = 5
 
     init {
-        getPokemons("0", "5")
+        getPokemons(offset, limit)
     }
 
     private fun getPokemons(
-        start: String,
-        limit: String
+        start: Int,
+        limit: Int
     ) {
         viewModelScope.launch {
             try {
                 _pokemons.value = PokeApi.retrofitService.getPokemons(start, limit)
+                Log.d(
+                    "VIEWMODEL",
+                    pokemons.value
+                        ?.results
+                        .toString()
+                )
             } catch (e: Exception) {
                 _pokemons.value = null
-                Log.d("ERROR", "could not retrieve from retrofit $e")
+                Log.e("ERROR", "could not retrieve from retrofit $e")
             }
         }
     }

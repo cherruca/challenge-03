@@ -6,12 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokedex.api.PokeApi
-import com.example.pokedex.data.Pokemon
+import com.example.pokedex.data.PokemonResponse
 import kotlinx.coroutines.launch
 
 class PokedexViewModel : ViewModel() {
-    private val _pokemons = MutableLiveData<List<Pokemon>>()
-    val pokemons: LiveData<List<Pokemon>>
+    private val _pokemons = MutableLiveData<PokemonResponse>()
+    val pokemons: LiveData<PokemonResponse>
         get() = _pokemons
 
     init {
@@ -26,7 +26,7 @@ class PokedexViewModel : ViewModel() {
             try {
                 _pokemons.value = PokeApi.retrofitService.getPokemons(start, limit)
             } catch (e: Exception) {
-                _pokemons.value = ArrayList()
+                _pokemons.value = null
                 Log.d("ERROR", "could not retrieve from retrofit $e")
             }
         }

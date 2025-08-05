@@ -2,12 +2,12 @@
 
 ## UI
 - [ ] Basic fragments design with XML and material 2 (01:30)
-- [ ] Navigation component with safe args (01:30)
+- [x] Navigation component with safe args (01:30)
 
 ## RetroFit with PokeAPI
-- [ ] Dependencies (00:30)
-- [ ] API modeling and annotations (01:00)
-- [ ] Builders and converters (01:30)
+- [x] Dependencies (00:30)
+- [x] API modeling and annotations (01:00)
+- [x] Builders and converters (01:30)
 - [ ] Observe API data in the ViewModel (01:30)
 - [ ] Reusable API instance class (01:00)
 

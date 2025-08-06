@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokedex.databinding.FragmentPokedexBinding
 
 class PokedexFragment : Fragment() {
@@ -17,11 +17,7 @@ class PokedexFragment : Fragment() {
     private val customAdapter = PokedexAdapter()
 
     private val viewModel: PokedexViewModel by lazy {
-        ViewModelProvider(this).get(PokedexViewModel::class.java)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        ViewModelProvider(this)[PokedexViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -45,7 +41,7 @@ class PokedexFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        val layoutManager = GridLayoutManager(context, 2)
+        val layoutManager = LinearLayoutManager(context)
         binding.recyclerviewPokedex.layoutManager = layoutManager
         binding.recyclerviewPokedex.adapter = customAdapter
 

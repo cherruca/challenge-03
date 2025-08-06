@@ -26,12 +26,6 @@ class PokedexViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _pokemons.value = PokeApi.retrofitService.getPokemons(start, limit)
-                Log.d(
-                    "VIEWMODEL",
-                    pokemons.value
-                        ?.results
-                        .toString()
-                )
             } catch (e: Exception) {
                 _pokemons.value = null
                 Log.e("ERROR", "could not retrieve from retrofit $e")

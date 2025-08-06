@@ -1,19 +1,16 @@
 package com.example.pokedex.ui.pokedex
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokedex.databinding.FragmentPokedexBinding
 
 class PokedexFragment : Fragment() {
     private lateinit var binding: FragmentPokedexBinding
-    private val pokemonIndex: Int = 2
     private val customAdapter = PokedexAdapter()
 
     private val viewModel: PokedexViewModel by lazy {
@@ -28,9 +25,6 @@ class PokedexFragment : Fragment() {
         binding = FragmentPokedexBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.btnDetail.setOnClickListener { view: View ->
-            view.findNavController().navigate(PokedexFragmentDirections.actionPokedexFragmentToPokemonDetailFragment(pokemonIndex))
-        }
 
         return binding.root
     }
@@ -48,7 +42,6 @@ class PokedexFragment : Fragment() {
         viewModel.pokemons.observe(viewLifecycleOwner) { response ->
             val dataset = response?.results ?: emptyList()
             customAdapter.submitList(dataset)
-            Log.d("FRAGMENT", dataset.toString())
         }
     }
 }

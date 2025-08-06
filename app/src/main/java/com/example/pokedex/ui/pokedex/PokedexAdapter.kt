@@ -35,7 +35,7 @@ class PokedexAdapter : RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder>() 
         holder.textViewName.text = dataSet[position].name
         holder.textViewName.setOnClickListener {
             holder.textViewName.findNavController().navigate(
-                PokedexFragmentDirections.actionPokedexFragmentToPokemonDetailFragment(dataSet[position].url)
+                PokedexFragmentDirections.actionPokedexFragmentToPokemonDetailFragment(dataSet[position].name)
             )
         }
     }

@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.pokedex.databinding.FragmentPokemonDetailBinding
 
 class PokemonDetailFragment : Fragment() {
     private lateinit var binding: FragmentPokemonDetailBinding
-    private val viewModel: PokemonDetailViewModel by viewModels()
+
+    private val viewModel: PokemonDetailViewModel by lazy {
+        ViewModelProvider(this)[PokemonDetailViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +28,12 @@ class PokemonDetailFragment : Fragment() {
     ): View {
         val args = PokemonDetailFragmentArgs.fromBundle(requireArguments())
         binding = FragmentPokemonDetailBinding.inflate(inflater, container, false)
-        binding.detailTitle.text = args.pokemonId
+
+        viewModel.getPokemonDetail(name = args.pokemonId)
+        viewModel.pokemonDetail.observe(viewLifecycleOwner) { response ->
+            binding.detailTitle.text = response?.name
+            binding.detailHeight.text = response?.height.toString()
+        }
         return binding.root
     }
 }

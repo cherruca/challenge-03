@@ -1,7 +1,54 @@
 package com.example.pokedex.data
 
+import com.squareup.moshi.Json
+
 data class PokemonDetailResponse(
     val id: Int,
     val name: String,
-    val height: Double
+    val height: Double,
+    val weight: Double,
+    val sprites: Sprites,
+    val stats: List<Stat>,
+    val types: List<Type>
+)
+
+data class Sprites(
+    @Json(name = "back_default")
+    val backDefault: String,
+    @Json(name = "back_female")
+    val backFemale: Any?,
+    @Json(name = "back_shiny")
+    val backShiny: String,
+    @Json(name = "back_shiny_female")
+    val backShinyFemale: Any?,
+    @Json(name = "front_default")
+    val frontDefault: String,
+    @Json(name = "front_female")
+    val frontFemale: Any?,
+    @Json(name = "front_shiny")
+    val frontShiny: String,
+    @Json(name = "front_shiny_female")
+    val frontShinyFemale: Any?
+)
+
+data class Stat(
+    @Json(name = "base_stat")
+    val baseStat: Long,
+    val effort: Long,
+    val stat: StatDetail
+)
+
+data class StatDetail(
+    val name: String,
+    val url: String
+)
+
+data class Type(
+    val slot: Long,
+    val type: TypeDetail
+)
+
+data class TypeDetail(
+    val name: String,
+    val url: String
 )

@@ -7,12 +7,13 @@ data class PokemonDetailResponse(
     val name: String,
     val height: Double,
     val weight: Double,
-    val sprites: Sprites,
+    val sprites: Sprite,
     val stats: List<Stat>,
-    val types: List<Type>
+    val types: List<Type>,
+    val cries: Cry,
 )
 
-data class Sprites(
+data class Sprite(
     @Json(name = "back_default")
     val backDefault: String,
     @Json(name = "back_female")
@@ -51,4 +52,9 @@ data class Type(
 data class TypeDetail(
     val name: String,
     val url: String
+)
+
+data class Cry(
+    val latest: String,
+    val legacy: String,
 )

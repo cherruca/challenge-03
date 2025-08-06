@@ -19,17 +19,34 @@ android:padding="16dp">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/detail_height"
+        app:layout_constraintBottom_toTopOf="@+id/main_sprite"
         android:text="@string/pokemon_details" />
 
-    <TextView
-        android:id="@+id/detail_height"
+    <ImageView
+        android:id="@+id/main_sprite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detail_title"
-        android:text="@string/app_name" />
+        app:layout_constraintBottom_toTopOf="@+id/detail_height"/>
+
+    <TextView
+        android:id="@+id/detail_height_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_sprite"
+        app:layout_constraintBottom_toTopOf="@+id/detail_extra"/>
+
+    <TextView
+        android:id="@+id/detail_extra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_height_weight" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

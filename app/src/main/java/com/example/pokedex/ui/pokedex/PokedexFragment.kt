@@ -15,6 +15,8 @@ import com.example.pokedex.databinding.FragmentPokedexBinding
 class PokedexFragment : Fragment() {
     private lateinit var binding: FragmentPokedexBinding
     private val customAdapter = PokedexAdapter()
+
+    // todo move the favoriteRepository to the ViewModel
     private val favoriteRepository: FavoriteRepository = FavoriteRepositoryImpl()
 
     private val viewModel: PokedexViewModel by lazy {

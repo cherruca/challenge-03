@@ -11,7 +11,8 @@ interface FavoriteRepository {
 }
 
 class FavoriteRepositoryImpl : FavoriteRepository {
-    private val favorites = mutableListOf<FavoritePokemon>()
+    // todo use set instead of list
+    private val favorites = mutableListOf<FavoritePokemon>(FavoritePokemon("bulbasaur"))
 
     override fun isFavorite(name: String): Boolean = favorites.contains(FavoritePokemon(name))
 

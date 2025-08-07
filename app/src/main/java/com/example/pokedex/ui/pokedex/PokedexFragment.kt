@@ -7,17 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pokedex.data.FavoriteRepository
-import com.example.pokedex.data.FavoriteRepositoryImpl
 import com.example.pokedex.data.PokemonUI
 import com.example.pokedex.databinding.FragmentPokedexBinding
 
 class PokedexFragment : Fragment() {
     private lateinit var binding: FragmentPokedexBinding
     private val customAdapter = PokedexAdapter()
-
-    // todo move the favoriteRepository to the ViewModel
-    private val favoriteRepository: FavoriteRepository = FavoriteRepositoryImpl()
 
     private val viewModel: PokedexViewModel by lazy {
         ViewModelProvider(this)[PokedexViewModel::class.java]
@@ -53,7 +48,7 @@ class PokedexFragment : Fragment() {
                     PokemonUI(
                         name = pokemon.name,
                         url = pokemon.url,
-                        favorite = favoriteRepository.isFavorite(pokemon.name),
+                        favorite = viewModel.favoriteRepository.isFavorite(pokemon.name),
                         image = ""
                     )
                 }

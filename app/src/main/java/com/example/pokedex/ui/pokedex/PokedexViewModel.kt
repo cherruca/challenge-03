@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokedex.api.PokeApi
+import com.example.pokedex.data.FavoriteRepository
+import com.example.pokedex.data.FavoriteRepositoryImpl
 import com.example.pokedex.data.PokemonResponse
 import kotlinx.coroutines.launch
 
@@ -14,6 +16,7 @@ class PokedexViewModel : ViewModel() {
         get() = _pokemons
     var offset: Int = 0
     val limit: Int = 5
+    val favoriteRepository: FavoriteRepository = FavoriteRepositoryImpl()
 
     init {
         getPokemons(offset, limit)

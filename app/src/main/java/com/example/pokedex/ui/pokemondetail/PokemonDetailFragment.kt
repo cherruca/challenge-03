@@ -30,18 +30,25 @@ class PokemonDetailFragment : Fragment() {
             binding.detailTitle.text = response?.name
             binding.mainSprite.load(response?.sprites?.frontDefault) {
                 crossfade(true)
-                placeholder(R.drawable.ic_launcher_foreground)
-                error(R.drawable.ic_launcher_foreground)
+                placeholder(R.drawable.rounded_downloading_24)
+                error(R.drawable.rounded_error_24)
             }
+            // todo clean code
             binding.detailHeightWeight.text =
                 buildString {
-                    append("Height: ")
                     append("%.2f".format(response?.height?.times(0.1)))
-                    append(" mts - Weight: ")
+                    append(" mts - ")
                     append("%.2f".format(response?.weight?.times(0.1)))
                     append(" kg ")
                 }
-//            binding.detailExtra.text = response.toString()
+            binding.detailExtra.text =
+                buildString {
+                    response?.stats?.forEach { stat ->
+                        append(stat.stat.name + ": ")
+                        append(stat.baseStat)
+                        append("\n")
+                    }
+                }
         }
         return binding.root
     }

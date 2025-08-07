@@ -7,15 +7,18 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
-import com.example.pokedex.data.Pokemon
+import com.example.pokedex.data.PokemonUI
+import com.google.android.material.card.MaterialCardView
 
 class PokedexAdapter : RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder>() {
-    private var dataSet = listOf<Pokemon>()
+    private var dataSet = listOf<PokemonUI>()
 
     class PokedexViewHolder(
         view: View
     ) : RecyclerView.ViewHolder(view) {
         val textViewName: TextView = view.findViewById(R.id.item_name)
+        val favoriteViewName: TextView = view.findViewById(R.id.item_favorite)
+        val cardView: MaterialCardView = view.findViewById(R.id.pokecard)
     } // todo: holder e inflate con data binding
 
     override fun onCreateViewHolder(
@@ -23,8 +26,7 @@ class PokedexAdapter : RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder>() 
         viewType: Int
     ): PokedexViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_pokedex, parent, false)
-        // todo: databinding con inflate
-        // todo: val view2 = ItemPokedexBinding.inflate(LayoutInflater.from(parent.context))
+        // todo: databinding con inflate: val view2 = ItemPokedexBinding.inflate(LayoutInflater.from(parent.context))
         return PokedexViewHolder(view)
     }
 
@@ -33,8 +35,10 @@ class PokedexAdapter : RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder>() 
         position: Int
     ) {
         holder.textViewName.text = dataSet[position].name
-        holder.textViewName.setOnClickListener {
-            holder.textViewName.findNavController().navigate(
+        // todo apply different viewtype when favorite = true
+        holder.favoriteViewName.text = if (dataSet[position].favorite) "favorite" else ""
+        holder.cardView.setOnClickListener {
+            holder.cardView.findNavController().navigate(
                 PokedexFragmentDirections.actionPokedexFragmentToPokemonDetailFragment(dataSet[position].name)
             )
         }
@@ -42,7 +46,7 @@ class PokedexAdapter : RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder>() 
 
     override fun getItemCount(): Int = dataSet.size
 
-    fun submitList(newData: List<Pokemon>) {
+    fun submitList(newData: List<PokemonUI>) {
         dataSet = newData
         notifyDataSetChanged()
     }

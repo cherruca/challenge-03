@@ -1,5 +1,7 @@
 package com.example.pokedex.data
 
+import com.example.pokedex.data.list.ListItem
+
 data class Pokemon(
     val name: String,
     val url: String
@@ -8,8 +10,14 @@ data class Pokemon(
 data class PokemonUI(
     val name: String,
     val url: String,
-    val favorite: Boolean,
+    val isFavorite: Boolean,
     val image: String?
-) {
+) : ListItem {
     // todo fun getImage() = "https:/.../$name.jpeg"
+    override fun getListItemType(): Int =
+        if (isFavorite) {
+            1
+        } else {
+            2
+        }
 }

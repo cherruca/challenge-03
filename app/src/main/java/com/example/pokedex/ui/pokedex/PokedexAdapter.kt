@@ -36,7 +36,7 @@ class PokedexAdapter : RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder>() 
     ) {
         holder.textViewName.text = dataSet[position].name
         // todo apply different viewtype when favorite = true
-        holder.favoriteViewName.text = if (dataSet[position].favorite) "favorite" else ""
+        holder.favoriteViewName.text = if (dataSet[position].isFavorite) "favorite" else ""
         holder.cardView.setOnClickListener {
             holder.cardView.findNavController().navigate(
                 PokedexFragmentDirections.actionPokedexFragmentToPokemonDetailFragment(dataSet[position].name)

@@ -9,10 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokedex.data.PokemonUI
 import com.example.pokedex.databinding.FragmentPokedexBinding
+import com.example.pokedex.ui.adapter.PokemonAdapter
 
 class PokedexFragment : Fragment() {
     private lateinit var binding: FragmentPokedexBinding
-    private val customAdapter = PokedexAdapter()
 
     private val viewModel: PokedexViewModel by lazy {
         ViewModelProvider(this)[PokedexViewModel::class.java]
@@ -38,7 +38,6 @@ class PokedexFragment : Fragment() {
 
         val layoutManager = LinearLayoutManager(context)
         binding.recyclerviewPokedex.layoutManager = layoutManager
-        binding.recyclerviewPokedex.adapter = customAdapter
 
         viewModel.pokemons.observe(viewLifecycleOwner) { response ->
             val dataset = response?.results ?: emptyList()
@@ -48,11 +47,11 @@ class PokedexFragment : Fragment() {
                     PokemonUI(
                         name = pokemon.name,
                         url = pokemon.url,
-                        favorite = viewModel.favoriteRepository.isFavorite(pokemon.name),
+                        isFavorite = viewModel.favoriteRepository.isFavorite(pokemon.name),
                         image = ""
                     )
                 }
-            customAdapter.submitList(pokemonsUI)
+            binding.recyclerviewPokedex.adapter = PokemonAdapter(pokemonsUI)
         }
     }
 }

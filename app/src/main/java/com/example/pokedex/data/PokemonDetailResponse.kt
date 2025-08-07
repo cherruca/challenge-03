@@ -10,7 +10,7 @@ data class PokemonDetailResponse(
     val sprites: Sprite,
     val stats: List<Stat>,
     val types: List<Type>,
-    val cries: Cry,
+    val cries: Cry
 )
 
 data class Sprite(
@@ -56,5 +56,5 @@ data class TypeDetail(
 
 data class Cry(
     val latest: String,
-    val legacy: String,
+    val legacy: String
 )

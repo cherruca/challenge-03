@@ -1,18 +1,18 @@
 # Tasks
 
 ## UI
-- [ ] Basic fragments design with XML and material 2 (01:30)
+- [x] Basic fragments design with XML and material 2 (01:30)
 - [x] Navigation component with safe args (01:30)
 
 ## RetroFit with PokeAPI
 - [x] Dependencies (00:30)
 - [x] API modeling and annotations (01:00)
 - [x] Builders and converters (01:30)
-- [ ] Observe API data in the ViewModel (01:30)
-- [ ] Reusable API instance class (01:00)
+- [x] Observe API data in the ViewModel (01:30)
+- [x] Reusable API instance class (01:00)
 
 ## MVVM
-- [ ] Model (00:30)
+- [x] Model (00:30)
 - [x] ViewModel (01:00)
 - [x] LiveData (01:00)
 
@@ -21,7 +21,7 @@
 - [x] Main Recyclerview (01:30)
 - [ ] Other Recyclerview
 - [ ] ViewHolders and ViewTypes (01:30)
-- [ ] Store favorites list in memory (01:00)
+- [x] Store favorites list in memory (01:00)
 - [x] Basic details screen
 - [ ] Details screen: with carousel using SnapHelper (01:30)
 - [ ] Details screen: play the cry with ExoPlayer (02:00)

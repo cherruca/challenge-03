@@ -16,11 +16,13 @@ data class PokemonUI(
     val image: String?
 ): ListItem {
     // todo fun getImage() = "https:/.../$name.jpeg"
+    // TODO: why are you calling this function  in this way? you can simple move this logic to the adapter inside the correct override of the getItemviewType
     override fun getListItemType(): Int =
         // TODO: nope, those magic numbers are not readable at all.
         //  Please use an interface here.
         if (isFavorite) {
-            // todo use the ordinal from the interface
+            // todo: use the ordinal from the interface
+            // TODO: change this num to constant inside a enum class and us a descriptive name-> Ex: IS_FAVORITE = 1,
             1
         } else {
             2

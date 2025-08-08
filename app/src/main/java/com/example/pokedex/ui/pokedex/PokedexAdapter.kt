@@ -26,6 +26,7 @@ class PokedexAdapter : RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder>() 
         parent: ViewGroup,
         viewType: Int
     ): PokedexViewHolder {
+        // TODO: why you are not longer using viewbinding?
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_pokedex, parent, false)
         // todo: databinding con inflate: val view2 = ItemPokedexBinding.inflate(LayoutInflater.from(parent.context))
         return PokedexViewHolder(view)

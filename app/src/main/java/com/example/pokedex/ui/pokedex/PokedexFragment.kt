@@ -39,6 +39,7 @@ class PokedexFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         binding.recyclerviewPokedex.layoutManager = layoutManager
 
+
         viewModel.pokemons.observe(viewLifecycleOwner) { response ->
             val dataset = response?.results ?: emptyList()
             // todo clean code

@@ -22,7 +22,7 @@ class PokedexViewModel : ViewModel() {
         getPokemons(offset, limit)
     }
 
-    private fun getPokemons(
+    fun getPokemons(
         start: Int,
         limit: Int
     ) {

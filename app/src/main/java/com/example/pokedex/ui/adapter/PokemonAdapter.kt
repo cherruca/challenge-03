@@ -21,17 +21,22 @@ class PokemonAdapter(
         parent: ViewGroup,
         viewType: Int
     ): BaseViewHolder {
-        return when (viewType) {
+        when (viewType) {
             1 -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_favorite_pokedex, parent, false)
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_favorite_pokedex, parent, false)
                 return ViewHolderFavorite(view)
             }
+
             2 -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_pokedex, parent, false)
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_pokedex, parent, false)
                 return ViewHolderNotFavorite(view)
             }
+
             else -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_pokedex, parent, false)
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_pokedex, parent, false)
                 return ViewHolderNotFavorite(view)
             }
         }

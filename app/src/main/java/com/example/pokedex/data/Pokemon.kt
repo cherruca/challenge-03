@@ -12,10 +12,11 @@ data class PokemonUI(
     val url: String,
     val isFavorite: Boolean,
     val image: String?
-) : ListItem {
+): ListItem {
     // todo fun getImage() = "https:/.../$name.jpeg"
     override fun getListItemType(): Int =
         if (isFavorite) {
+            // todo use the ordinal from the interface
             1
         } else {
             2

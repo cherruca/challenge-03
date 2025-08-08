@@ -1,6 +1,7 @@
 package com.example.pokedex.ui.pokemondetail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -87,6 +88,7 @@ class PokemonDetailFragment : Fragment() {
             }
 
             binding.btnPlay.isEnabled = !response?.cries?.latest.isNullOrEmpty()
+            response?.name?.isEmpty()?.let { binding.btnFavorite.isEnabled = !it }
         }
         return binding.root
     }
@@ -96,6 +98,12 @@ class PokemonDetailFragment : Fragment() {
         player = ExoPlayer.Builder(requireContext()).build()
         binding.btnPlay.setOnClickListener {
             playCry()
+        }
+        binding.btnFavorite.setOnClickListener {
+            viewModel.pokemonDetail.value?.name?.let { it ->
+                viewModel.toggleFavorite(it)
+                Log.d("DETAILNAME",it)
+            }
         }
     }
 

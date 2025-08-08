@@ -1,20 +1,21 @@
 package com.example.pokedex.domain.repository
 
-import com.example.pokedex.domain.model.FavoritePokemon
-import com.example.pokedex.domain.repository.FavoriteRepository
+import android.util.Log
+import androidx.lifecycle.MutableLiveData
 
 class FavoriteRepositoryImpl: FavoriteRepository {
-    private val favorites = mutableSetOf<FavoritePokemon>(FavoritePokemon("bulbasaur"))
+    private var favorites: MutableSet<String> = mutableSetOf()
 
     override fun isFavorite(name: String): Boolean = favorites.contains(
-        FavoritePokemon(name)
-    )
+        name
+    ) ?: false
 
     override fun toggleFavorite(name: String) {
         if (!isFavorite(name)) {
-            favorites.add(FavoritePokemon(name))
+            favorites.add(name)
         } else {
-            favorites.remove(FavoritePokemon(name))
+            favorites.remove(name)
         }
+        Log.d("FAVORITES", favorites.toString())
     }
 }

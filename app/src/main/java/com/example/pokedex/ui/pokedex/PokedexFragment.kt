@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pokedex.data.PokemonUI
+import com.example.pokedex.domain.model.PokemonUI
 import com.example.pokedex.databinding.FragmentPokedexBinding
 import com.example.pokedex.ui.adapter.PokemonAdapter
 
@@ -50,7 +50,8 @@ class PokedexFragment : Fragment() {
                         name = pokemon.name,
                         url = pokemon.url,
                         isFavorite = viewModel.favoriteRepository.isFavorite(pokemon.name),
-                        image = ""
+                        imageDefault = "",
+                        imageShiny = ""
                     )
                 }
             binding.recyclerviewPokedex.adapter = PokemonAdapter(pokemonsUI)

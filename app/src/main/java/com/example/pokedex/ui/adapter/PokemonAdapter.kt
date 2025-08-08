@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
-import com.example.pokedex.data.PokemonUI
+import com.example.pokedex.domain.model.PokemonUI
 import com.example.pokedex.data.list.ListItem
 import com.example.pokedex.ui.pokedex.PokedexFragmentDirections
 import com.google.android.material.card.MaterialCardView

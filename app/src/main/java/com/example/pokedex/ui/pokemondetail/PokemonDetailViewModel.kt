@@ -31,7 +31,6 @@ class PokemonDetailViewModel : ViewModel() {
     fun toggleFavorite(name: String) {
         viewModelScope.launch {
             favoriteRepository.toggleFavorite(name)
-            Log.d("VMNAME",name)
         }
     }
 }

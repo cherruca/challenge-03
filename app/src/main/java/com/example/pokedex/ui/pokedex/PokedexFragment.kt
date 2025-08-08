@@ -61,9 +61,4 @@ class PokedexFragment : Fragment() {
             binding.recyclerviewPokedex.adapter = PokemonListAdapter(items)
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-        binding.recyclerviewPokedex.adapter?.notifyDataSetChanged()
-    }
 }

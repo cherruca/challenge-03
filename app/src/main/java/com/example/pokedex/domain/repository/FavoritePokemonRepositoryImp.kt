@@ -8,7 +8,7 @@ class FavoriteRepositoryImpl: FavoriteRepository {
 
     override fun isFavorite(name: String): Boolean = favorites.contains(
         name
-    ) ?: false
+    )
 
     override fun toggleFavorite(name: String) {
         if (!isFavorite(name)) {
@@ -16,6 +16,5 @@ class FavoriteRepositoryImpl: FavoriteRepository {
         } else {
             favorites.remove(name)
         }
-        Log.d("FAVORITES", favorites.toString())
     }
 }

@@ -14,6 +14,7 @@ import coil.load
 import com.example.pokedex.R
 import com.example.pokedex.databinding.FragmentPokemonDetailBinding
 import com.example.pokedex.ui.adapter.StatAdapter
+import com.example.pokedex.ui.adapter.TypeAdapter
 
 // TODO: where's the topAppBar for this screen?
 class PokemonDetailFragment : Fragment() {
@@ -35,11 +36,18 @@ class PokemonDetailFragment : Fragment() {
         viewModel.getPokemonDetail(name = args.pokemonId)
         viewModel.pokemonDetail.observe(viewLifecycleOwner) { response ->
             binding.detailTitle.text = response?.name
+
+            response?.types?.let { types ->
+                binding.recyclerviewTypes.adapter = TypeAdapter(types)
+                binding.recyclerviewTypes.layoutManager = GridLayoutManager(context, 2)
+            }
+
             binding.mainSprite.load(response?.sprites?.frontDefault) {
                 crossfade(true)
                 placeholder(R.drawable.rounded_downloading_24)
                 error(R.drawable.rounded_error_24)
             }
+
             // formats the height and weight variables to metric and concatenates its strings to print one line
             binding.detailHeightWeight.text =
                 buildString {

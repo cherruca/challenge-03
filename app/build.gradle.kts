@@ -47,9 +47,6 @@ android {
     }
 }
 
-// TODO: Please remove the commented code (at least you're planning to use them)
-//tasks.getByPath("preBuild").dependsOn("ktlintFormat")
-
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -63,7 +60,6 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.androidx.paging.runtime)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

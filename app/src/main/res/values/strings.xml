@@ -6,4 +6,6 @@
     <string name="play_cry">Play cry</string>
     <string name="error_no_internet">You don\'t have internet access</string>
     <string name="favorite">favorite</string>
+    <string name="addfav">Add to favorites</string>
+    <string name="removefav">Remove from favorites</string>
 </resources>

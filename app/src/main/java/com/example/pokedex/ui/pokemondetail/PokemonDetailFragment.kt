@@ -123,9 +123,9 @@ class PokemonDetailFragment : Fragment() {
 
     private fun getFavoriteBtnText(name: String): String {
         if (viewModel.favoriteRepository.isFavorite(name)) {
-            return "Remove favorite"
+            return getString(R.string.removefav)
         } else {
-            return "Add favorite"
+            return getString(R.string.addfav)
         }
     }
 }

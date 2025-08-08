@@ -10,9 +10,10 @@ import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import coil.load
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.example.pokedex.R
 import com.example.pokedex.databinding.FragmentPokemonDetailBinding
+import com.example.pokedex.ui.adapter.SpriteAdapter
 import com.example.pokedex.ui.adapter.StatAdapter
 import com.example.pokedex.ui.adapter.TypeAdapter
 
@@ -35,27 +36,50 @@ class PokemonDetailFragment : Fragment() {
 
         viewModel.getPokemonDetail(name = args.pokemonId)
         viewModel.pokemonDetail.observe(viewLifecycleOwner) { response ->
-            binding.detailTitle.text = response?.name
+            if (response?.name?.isNotBlank() == true) {
+                binding.detailTitle.text = response.name
+            } else {
+                binding.detailTitle.text = getString(R.string.error_no_internet)
+            }
 
             response?.types?.let { types ->
                 binding.recyclerviewTypes.adapter = TypeAdapter(types)
                 binding.recyclerviewTypes.layoutManager = GridLayoutManager(context, 2)
             }
 
-            binding.mainSprite.load(response?.sprites?.frontDefault) {
-                crossfade(true)
-                placeholder(R.drawable.rounded_downloading_24)
-                error(R.drawable.rounded_error_24)
+            response?.sprites?.let { sprites ->
+                val spriteUrls = listOfNotNull(
+                    sprites.frontDefault,
+                    sprites.backDefault,
+                    sprites.frontShiny,
+                    sprites.backShiny,
+                    sprites.frontFemale,
+                    sprites.backFemale,
+                    sprites.frontShinyFemale,
+                    sprites.backShinyFemale
+                )
+
+                binding.recyclerviewSprites.adapter = SpriteAdapter(spriteUrls)
+                binding.recyclerviewSprites.layoutManager = LinearLayoutManager(
+                    context,
+                    LinearLayoutManager.HORIZONTAL,
+                    false
+                )
+
+                val snapHelper = PagerSnapHelper()
+                snapHelper.attachToRecyclerView(binding.recyclerviewSprites)
             }
 
             // formats the height and weight variables to metric and concatenates its strings to print one line
-            binding.detailHeightWeight.text =
-                buildString {
-                    append("%.2f".format(response?.height?.times(0.1)))
-                    append(" mts - ")
-                    append("%.2f".format(response?.weight?.times(0.1)))
-                    append(" kg ")
-                }
+            response?.let {
+                binding.detailHeightWeight.text =
+                    buildString {
+                        append("%.2f".format(response.height.times(0.1)))
+                        append(" mts - ")
+                        append("%.2f".format(response.weight.times(0.1)))
+                        append(" kg ")
+                    }
+            }
 
             response?.stats?.let { stats ->
                 binding.recyclerviewStats.adapter = StatAdapter(stats)

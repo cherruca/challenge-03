@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokedex.network.PokeApi
-import com.example.pokedex.data.PokemonDetailResponse
+import com.example.pokedex.domain.model.PokemonDetailResponse
 import kotlinx.coroutines.launch
 
 class PokemonDetailViewModel : ViewModel() {

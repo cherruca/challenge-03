@@ -1,8 +1,5 @@
 package com.example.pokedex.domain.repository
 
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
-
 class FavoriteRepositoryImpl: FavoriteRepository {
     private var favorites: MutableSet<String> = FavoritesDataSource.favorites
 

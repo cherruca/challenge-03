@@ -90,7 +90,7 @@ class PokemonDetailFragment : Fragment() {
             binding.btnPlay.isEnabled = !response?.cries?.latest.isNullOrEmpty()
             response?.name?.isEmpty()?.let {
                 binding.btnFavorite.isEnabled = !it
-                binding.btnFavorite.text = if (viewModel.favoriteRepository.isFavorite(response.name)) "remove favorite" else "add favorite"
+                binding.btnFavorite.text = getFavoriteBtnText(response.name)
             }
         }
         return binding.root
@@ -105,8 +105,7 @@ class PokemonDetailFragment : Fragment() {
         binding.btnFavorite.setOnClickListener {
             viewModel.pokemonDetail.value?.name?.let { it ->
                 viewModel.toggleFavorite(it)
-                binding.btnFavorite.text = if (viewModel.favoriteRepository.isFavorite(viewModel.pokemonDetail.value?.name
-                        ?: "")) "remove favorite" else "add favorite"
+                binding.btnFavorite.text = getFavoriteBtnText(it)
             }
         }
     }
@@ -119,6 +118,14 @@ class PokemonDetailFragment : Fragment() {
                 prepare()
                 play()
             }
+        }
+    }
+
+    private fun getFavoriteBtnText(name: String): String {
+        if (viewModel.favoriteRepository.isFavorite(name)) {
+            return "Remove favorite"
+        } else {
+            return "Add favorite"
         }
     }
 }

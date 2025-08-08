@@ -1,6 +1,4 @@
-package com.example.pokedex.data
-
-import com.example.pokedex.domain.model.PokemonResult
+package com.example.pokedex.domain.model
 
 data class PokemonResponse(
     val count: Int,
@@ -8,3 +6,4 @@ data class PokemonResponse(
     val previous: String?,
     val results: List<PokemonResult>?
 )
+

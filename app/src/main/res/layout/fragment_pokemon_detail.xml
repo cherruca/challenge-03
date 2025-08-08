@@ -37,19 +37,19 @@
             android:id="@+id/detail_height_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/detail_extra"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerview_stats"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_sprite" />
 
-        <TextView
-            android:id="@+id/detail_extra"
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_stats"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/detail_height_weight"
-            app:layout_constraintBottom_toTopOf="@id/btn_play" />
+            app:layout_constraintBottom_toTopOf="@id/btn_play"/>
 
         <Button
             android:id="@+id/btn_play"
@@ -59,7 +59,7 @@
             android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detail_extra"
+            app:layout_constraintTop_toBottomOf="@id/recyclerview_stats"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

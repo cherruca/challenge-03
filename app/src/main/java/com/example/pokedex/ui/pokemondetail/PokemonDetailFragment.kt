@@ -8,16 +8,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.pokedex.R
 import com.example.pokedex.databinding.FragmentPokemonDetailBinding
+import com.example.pokedex.ui.adapter.StatAdapter
 
 // TODO: where's the topAppBar for this screen?
 class PokemonDetailFragment : Fragment() {
     private lateinit var binding: FragmentPokemonDetailBinding
     private var player: ExoPlayer? = null
 
-    private val viewModel: PokemonDetailViewModel by  lazy {
+    private val viewModel: PokemonDetailViewModel by lazy {
         ViewModelProvider(this)[PokemonDetailViewModel::class.java]
     }
 
@@ -45,6 +48,13 @@ class PokemonDetailFragment : Fragment() {
                     append("%.2f".format(response?.weight?.times(0.1)))
                     append(" kg ")
                 }
+
+            response?.stats?.let { stats ->
+                binding.recyclerviewStats.adapter = StatAdapter(stats)
+                binding.recyclerviewStats.layoutManager = GridLayoutManager(context, 2)
+            }
+
+            binding.btnPlay.isEnabled = !response?.cries?.latest.isNullOrEmpty()
         }
         return binding.root
     }
@@ -58,12 +68,13 @@ class PokemonDetailFragment : Fragment() {
     }
 
     private fun playCry() {
-        val mediaItem = MediaItem.fromUri(viewModel.pokemonDetail.value?.cries?.latest ?: "null")
-
-        player?.apply {
-            setMediaItem(mediaItem)
-            prepare()
-            play()
+        viewModel.pokemonDetail.value?.cries?.latest?.let { cryUrl ->
+            val mediaItem = MediaItem.fromUri(cryUrl)
+            player?.apply {
+                setMediaItem(mediaItem)
+                prepare()
+                play()
+            }
         }
     }
 }

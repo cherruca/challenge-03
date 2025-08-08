@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokedex.network.PokeApi
-import com.example.pokedex.data.FavoriteRepository
-import com.example.pokedex.data.FavoriteRepositoryImpl
+import com.example.pokedex.domain.repository.FavoriteRepository
+import com.example.pokedex.domain.repository.FavoriteRepositoryImpl
+//import com.example.pokedex.data.FavoriteRepository
+//import com.example.pokedex.data.FavoriteRepositoryImpl
 import com.example.pokedex.data.PokemonResponse
 import kotlinx.coroutines.launch
 

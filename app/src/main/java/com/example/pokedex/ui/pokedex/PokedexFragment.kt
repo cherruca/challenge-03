@@ -1,7 +1,6 @@
 package com.example.pokedex.ui.pokedex
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,14 +49,11 @@ class PokedexFragment : Fragment() {
         {
             viewModel.offset.plus(5)
         }
-
         val pokemonsUI =
             dataset.map { pokemon ->
-
                 val pokemonDetailImgDefault = viewModel.pokemonDetail.value?.sprites?.frontDefault
                 val pokemonDetailImgShiny = viewModel.pokemonDetail.value?.sprites?.frontShiny
 
-                Log.d("IMGS", pokemonDetailImgDefault + pokemonDetailImgShiny)
                 PokemonUI(
                     name = pokemon.name,
                     url = pokemon.url,

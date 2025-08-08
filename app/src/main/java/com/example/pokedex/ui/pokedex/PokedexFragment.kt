@@ -9,7 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokedex.domain.model.PokemonUI
 import com.example.pokedex.databinding.FragmentPokedexBinding
-import com.example.pokedex.ui.adapter.PokemonAdapter
+import com.example.pokedex.domain.model.ListItem
+import com.example.pokedex.ui.adapter.PokemonListAdapter
 
 class PokedexFragment : Fragment() {
     private lateinit var binding: FragmentPokedexBinding
@@ -26,24 +27,18 @@ class PokedexFragment : Fragment() {
         binding = FragmentPokedexBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-
         return binding.root
     }
 
-    // TODO: please remove all the unnecessary empty-lines
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-
         val layoutManager = LinearLayoutManager(context)
         binding.recyclerviewPokedex.layoutManager = layoutManager
-
-
         viewModel.pokemons.observe(viewLifecycleOwner) { response ->
             val dataset = response?.results ?: emptyList()
-            // todo clean code
             val pokemonsUI =
                 dataset.map { pokemon ->
                     PokemonUI(
@@ -54,7 +49,16 @@ class PokedexFragment : Fragment() {
                         imageShiny = ""
                     )
                 }
-            binding.recyclerviewPokedex.adapter = PokemonAdapter(pokemonsUI)
+            val items = pokemonsUI.map { pokemonUI ->
+                ListItem.PokemonItem(
+                    pokemonUI = pokemonUI,
+                    viewType = if (pokemonUI.isFavorite)
+                        ListItem.ViewType.POKEMON_FAVORITE
+                    else
+                        ListItem.ViewType.POKEMON_NOT_FAVORITE
+                )
+            }
+            binding.recyclerviewPokedex.adapter = PokemonListAdapter(items)
         }
     }
 }

@@ -30,6 +30,7 @@ class PokedexFragment : Fragment() {
         return binding.root
     }
 
+    // TODO: please remove all the unnecessary empty-lines
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?

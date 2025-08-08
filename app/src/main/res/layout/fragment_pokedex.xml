@@ -8,6 +8,7 @@
             type="com.example.pokedex.ui.pokedex.PokedexViewModel" />
     </data>
 
+    <!--  This xml is not right formatted, please fix it :crying_bool:  -->
     <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"

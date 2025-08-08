@@ -10,6 +10,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+// TODO: please separate this into several files, group instances in a way that makes sense
 // reference repo: https://github.com/udacity/andfun-kotlin-mars-real-estate/blob/master/app/src/main/java/com/example/android/marsrealestate/network/MarsApiService.kt
 
 private const val BASE_URL = "https://pokeapi.co/api/v2/" // todo: move to local properties

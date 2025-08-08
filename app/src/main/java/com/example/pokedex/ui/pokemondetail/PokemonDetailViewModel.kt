@@ -18,7 +18,9 @@ class PokemonDetailViewModel : ViewModel() {
             try {
                 _pokemonDetail.value = PokeApi.retrofitService.getPokemonDetail(name)
             } catch (e: Exception) {
+                // TODO: If _pokemonDetail, how are you handling that scenario in your UI?
                 _pokemonDetail.value = null
+                // TODO: are you planning to handle an error and loading state here?
                 Log.e("ERROR", "could not retrieve data, $e")
             }
         }

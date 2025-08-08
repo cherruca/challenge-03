@@ -10,6 +10,7 @@ import com.example.pokedex.R
 import com.example.pokedex.data.PokemonUI
 import com.google.android.material.card.MaterialCardView
 
+// TODO: Remember to fix all the linter warnings
 class PokedexAdapter : RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder>() {
     private var dataSet = listOf<PokemonUI>()
 

@@ -12,6 +12,7 @@ import com.example.pokedex.data.list.ListItem
 import com.example.pokedex.ui.pokedex.PokedexFragmentDirections
 import com.google.android.material.card.MaterialCardView
 
+// TODO: adapters should be split into separate files
 class PokemonAdapter(
     private val items: List<ListItem>
 ) : RecyclerView.Adapter<BaseViewHolder>() {
@@ -22,6 +23,8 @@ class PokemonAdapter(
         viewType: Int
     ): BaseViewHolder {
         when (viewType) {
+            // TODO: this hardcoded numbers are a bad practice.
+            //  We cannot easily tell what 1 and 2 means, that's a bad code.
             1 -> {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_favorite_pokedex, parent, false)
@@ -42,6 +45,7 @@ class PokemonAdapter(
         }
     }
 
+    // TODO: Please, remove all the unnecessary empty-lines
     override fun onBindViewHolder(
         holder: BaseViewHolder,
         position: Int
@@ -66,6 +70,7 @@ class ViewHolderFavorite(
     private val cardView: MaterialCardView = itemView.findViewById(R.id.pokecard)
 
     override fun bind(item: ListItem) {
+        // TODO: `itemA` is a bad naming, try to find a more meaningful one
         val itemA = item as PokemonUI
         textView.text = itemA.name
         cardView.setOnClickListener {
@@ -83,6 +88,7 @@ class ViewHolderNotFavorite(
     private val cardView: MaterialCardView = itemView.findViewById(R.id.pokecard)
 
     override fun bind(item: ListItem) {
+        // TODO: same here, `itemB` is a bad naming
         val itemB = item as PokemonUI
         textView.text = itemB.name
         cardView.setOnClickListener {

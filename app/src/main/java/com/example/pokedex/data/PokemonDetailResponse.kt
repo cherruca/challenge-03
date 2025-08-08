@@ -2,6 +2,8 @@ package com.example.pokedex.data
 
 import com.squareup.moshi.Json
 
+// TODO: It's hard to read the models in the same file.
+//  Organize better your code/files
 data class PokemonDetailResponse(
     val id: Int,
     val name: String,
@@ -13,6 +15,7 @@ data class PokemonDetailResponse(
     val cries: Cry
 )
 
+//
 data class Sprite(
     @Json(name = "back_default")
     val backDefault: String,
@@ -21,14 +24,20 @@ data class Sprite(
     @Json(name = "back_shiny")
     val backShiny: String,
     @Json(name = "back_shiny_female")
+    // TODO: i don't get why are you using "Any?" here
+    //  You sure this is the right way?
     val backShinyFemale: Any?,
     @Json(name = "front_default")
     val frontDefault: String,
     @Json(name = "front_female")
+    // TODO: i don't get why are you using "Any?" here
+    //  You sure this is the right way?
     val frontFemale: Any?,
     @Json(name = "front_shiny")
     val frontShiny: String,
     @Json(name = "front_shiny_female")
+    // TODO: i don't get why are you using "Any?" here
+    //  You sure this is the right way?
     val frontShinyFemale: Any?
 )
 

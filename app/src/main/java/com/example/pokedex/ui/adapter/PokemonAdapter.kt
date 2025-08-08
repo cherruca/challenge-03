@@ -56,21 +56,22 @@ class PokemonAdapter(
 
     override fun getItemCount(): Int = items.size
 }
-
+//TODO: great but move this to a different file
 abstract class BaseViewHolder(
     itemView: View
 ) : RecyclerView.ViewHolder(itemView) {
     abstract fun bind(item: ListItem)
 }
-
+// TODO: I would recommend separate files
 class ViewHolderFavorite(
     itemView: View
 ) : BaseViewHolder(itemView) {
+    // TODO: use binding
     private val textView: TextView = itemView.findViewById(R.id.item_name)
     private val cardView: MaterialCardView = itemView.findViewById(R.id.pokecard)
 
     override fun bind(item: ListItem) {
-        // TODO: `itemA` is a bad naming, try to find a more meaningful one
+        // TODO: `itemA` is a bad naming, try to find a more meaningful one, please use descriptive naming
         val itemA = item as PokemonUI
         textView.text = itemA.name
         cardView.setOnClickListener {
@@ -80,10 +81,11 @@ class ViewHolderFavorite(
         }
     }
 }
-
+// TODO: split files
 class ViewHolderNotFavorite(
     itemView: View
 ) : BaseViewHolder(itemView) {
+    // TODO: use binding
     private val textView: TextView = itemView.findViewById(R.id.item_name)
     private val cardView: MaterialCardView = itemView.findViewById(R.id.pokecard)
 

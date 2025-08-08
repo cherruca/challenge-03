@@ -4,6 +4,7 @@ import com.squareup.moshi.Json
 
 // TODO: It's hard to read the models in the same file.
 //  Organize better your code/files
+// TODO: use nulable fields
 data class PokemonDetailResponse(
     val id: Int,
     val name: String,
@@ -15,12 +16,12 @@ data class PokemonDetailResponse(
     val cries: Cry
 )
 
-//
+//TODO: use nulable fields
 data class Sprite(
     @Json(name = "back_default")
     val backDefault: String,
     @Json(name = "back_female")
-    val backFemale: Any?,
+    val backFemale: Any?, //TODO: ANY?
     @Json(name = "back_shiny")
     val backShiny: String,
     @Json(name = "back_shiny_female")

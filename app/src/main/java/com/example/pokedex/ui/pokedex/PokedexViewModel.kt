@@ -19,7 +19,7 @@ class PokedexViewModel : ViewModel() {
     // TODO: why are you exposing `offset` and `limit` as a public variables?
     var offset: Int = 0
     val limit: Int = 5
-    val favoriteRepository = MutableLiveData<FavoriteRepository>(FavoriteRepositoryImpl())
+    val favoriteRepository = FavoriteRepositoryImpl()
 
     // TODO: i'm really curious about this line. Why did you end-up using an init here?
     //  should it be better to fetch the pokemon list in an event related to the fragment lifecycle?

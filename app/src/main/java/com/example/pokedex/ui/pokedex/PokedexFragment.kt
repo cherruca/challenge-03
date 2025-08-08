@@ -44,7 +44,7 @@ class PokedexFragment : Fragment() {
                     PokemonUI(
                         name = pokemon.name,
                         url = pokemon.url,
-                        isFavorite = viewModel.favoriteRepository.value?.isFavorite(pokemon.name) ?: false,
+                        isFavorite = viewModel.favoriteRepository.isFavorite(pokemon.name),
                         imageDefault = "",
                         imageShiny = ""
                     )
@@ -60,5 +60,10 @@ class PokedexFragment : Fragment() {
             }
             binding.recyclerviewPokedex.adapter = PokemonListAdapter(items)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.recyclerviewPokedex.adapter?.notifyDataSetChanged()
     }
 }

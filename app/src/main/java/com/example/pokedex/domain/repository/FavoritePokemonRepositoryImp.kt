@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 
 class FavoriteRepositoryImpl: FavoriteRepository {
-    private var favorites: MutableSet<String> = mutableSetOf()
+    private var favorites: MutableSet<String> = FavoritesDataSource.favorites
 
     override fun isFavorite(name: String): Boolean = favorites.contains(
         name

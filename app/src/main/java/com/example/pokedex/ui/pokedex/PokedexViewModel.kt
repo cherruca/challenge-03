@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pokedex.api.PokeApi
+import com.example.pokedex.network.PokeApi
 import com.example.pokedex.data.FavoriteRepository
 import com.example.pokedex.data.FavoriteRepositoryImpl
 import com.example.pokedex.data.PokemonResponse

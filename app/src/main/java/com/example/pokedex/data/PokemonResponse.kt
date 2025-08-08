@@ -1,5 +1,6 @@
 package com.example.pokedex.data
 
+// TODO: based on the API response, is it possible to have a nullable result?
 data class PokemonResponse(
     val count: Int,
     val next: String?,

@@ -47,6 +47,7 @@ android {
     }
 }
 
+// TODO: Please remove the commented code (at least you're planning to use them)
 //tasks.getByPath("preBuild").dependsOn("ktlintFormat")
 
 dependencies {

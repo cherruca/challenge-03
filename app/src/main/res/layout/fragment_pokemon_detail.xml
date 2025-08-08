@@ -2,6 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+<!--  Please fix the xml format :crying_blood: -->
+<!--  Don't forget to fix every linter warning here  -->
 <androidx.constraintlayout.widget.ConstraintLayout
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"

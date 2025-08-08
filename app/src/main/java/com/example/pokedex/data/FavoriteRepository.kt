@@ -1,5 +1,8 @@
 package com.example.pokedex.data
 
+// TODO: fix all the linter warnings
+// TODO: please, separate your classes into single files.
+//  This is hard to read :crying_blood:
 data class FavoritePokemon(
     val name: String
 )

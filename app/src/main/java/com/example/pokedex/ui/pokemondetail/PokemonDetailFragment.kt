@@ -10,10 +10,11 @@ import coil.load
 import com.example.pokedex.R
 import com.example.pokedex.databinding.FragmentPokemonDetailBinding
 
+// TODO: where's the topAppBar for this screen?
 class PokemonDetailFragment : Fragment() {
     private lateinit var binding: FragmentPokemonDetailBinding
 
-    private val viewModel: PokemonDetailViewModel by lazy {
+    private val viewModel: PokemonDetailViewModel by  lazy {
         ViewModelProvider(this)[PokemonDetailViewModel::class.java]
     }
 
@@ -34,6 +35,7 @@ class PokemonDetailFragment : Fragment() {
                 error(R.drawable.rounded_error_24)
             }
             // todo clean code
+            // TODO: please comment this cryptic code.
             binding.detailHeightWeight.text =
                 buildString {
                     append("%.2f".format(response?.height?.times(0.1)))
@@ -41,6 +43,8 @@ class PokemonDetailFragment : Fragment() {
                     append("%.2f".format(response?.weight?.times(0.1)))
                     append(" kg ")
                 }
+
+            // TODO: should it be a recyclerview instead?
             binding.detailExtra.text =
                 buildString {
                     response?.stats?.forEach { stat ->

@@ -56,7 +56,7 @@ class PokedexFragment : Fragment() {
 
                 PokemonUI(
                     name = pokemon.name,
-                    url = pokemon.url,
+//                    url = pokemon.url,
                     isFavorite = viewModel.favoriteRepository.isFavorite(pokemon.name),
                     pokemonDetailImgDefault,
                     imageShiny = pokemonDetailImgShiny

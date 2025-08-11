@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pokedex.domain.model.PokemonUI
 import com.example.pokedex.databinding.FragmentPokedexBinding
 import com.example.pokedex.domain.model.ListItem
 import com.example.pokedex.domain.model.PokemonResult
-import com.example.pokedex.ui.adapter.PokemonListAdapter
 
 class PokedexFragment : Fragment() {
     private lateinit var binding: FragmentPokedexBinding
@@ -40,7 +38,7 @@ class PokedexFragment : Fragment() {
         binding.recyclerviewPokedex.layoutManager = layoutManager
         viewModel.pokemons.observe(viewLifecycleOwner) { response ->
             val dataset = response?.results ?: emptyList()
-            binding.recyclerviewPokedex.adapter = PokemonListAdapter(loadRecyclerView(dataset))
+            // binding.recyclerviewPokedex.adapter = PokemonListAdapter(loadRecyclerView(dataset))
         }
     }
 
@@ -49,28 +47,9 @@ class PokedexFragment : Fragment() {
         {
             viewModel.offset.plus(5)
         }
-        val pokemonsUI =
-            dataset.map { pokemon ->
-                val pokemonDetailImgDefault = viewModel.pokemonDetail.value?.sprites?.frontDefault
-                val pokemonDetailImgShiny = viewModel.pokemonDetail.value?.sprites?.frontShiny
 
-                PokemonUI(
-                    name = pokemon.name,
-//                    url = pokemon.url,
-                    isFavorite = viewModel.favoriteRepository.isFavorite(pokemon.name),
-                    pokemonDetailImgDefault,
-                    imageShiny = pokemonDetailImgShiny
-                )
-            }
-        val items = pokemonsUI.map { pokemonUI ->
-            ListItem.PokemonItem(
-                pokemonUI = pokemonUI,
-                viewType = if (pokemonUI.isFavorite)
-                    ListItem.ViewType.POKEMON_FAVORITE
-                else
-                    ListItem.ViewType.POKEMON_NOT_FAVORITE
-            )
-        }
+        val items = emptyList<ListItem.PokemonItem>()
+
         return items
     }
 }

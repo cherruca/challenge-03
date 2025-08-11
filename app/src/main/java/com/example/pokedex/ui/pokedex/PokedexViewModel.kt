@@ -9,6 +9,7 @@ import com.example.pokedex.domain.model.PokemonDetailResponse
 import com.example.pokedex.network.PokeApi
 import com.example.pokedex.domain.repository.FavoriteRepositoryImpl
 import com.example.pokedex.domain.model.PokemonResponse
+import com.example.pokedex.domain.repository.PokemonUiRepositoryImp
 import kotlinx.coroutines.launch
 
 // TODO: please fix all the lint warnings here
@@ -19,6 +20,7 @@ class PokedexViewModel : ViewModel() {
     private val _pokemonDetail = MutableLiveData<PokemonDetailResponse?>()
     val pokemonDetail: MutableLiveData<PokemonDetailResponse?>
         get() = _pokemonDetail
+    val pokemonUiRepository = PokemonUiRepositoryImp()
     // TODO: you're not mutating `offset`, do not use `var` here
     // TODO: why are you exposing `offset` and `limit` as a public variables?
     var offset: Int = 0
@@ -38,6 +40,11 @@ class PokedexViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _pokemons.value = PokeApi.retrofitService.getPokemons(start, limit)
+                _pokemons.value?.results?.forEach { pokemonResult ->
+                    _pokemonDetail.value = PokeApi.retrofitService.getPokemonDetail(pokemonResult.name)
+                    pokemonUiRepository.addPokemons(pokemonDetail.value)
+                    Log.d("REPO", pokemonUiRepository.pokemonsUI.toString())
+                }
             } catch (e: Exception) {
                 _pokemons.value = null
                 // TODO: Are you planning to handle the error and empty states?
@@ -51,6 +58,7 @@ class PokedexViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _pokemonDetail.value = PokeApi.retrofitService.getPokemonDetail(name)
+                Log.d("GETDET", _pokemonDetail.value.toString())
             } catch (e: Exception) {
                 _pokemonDetail.value = null
                 Log.e("ERROR", "could not retrieve data, $e")
